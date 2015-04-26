@@ -1,9 +1,37 @@
 var originalGistList = [];
+var favGistList = [];
 var gistList = document.getElementById("gist-list");
 var favList = document.getElementById("fav-list");
 
 //elDiv.innerHTML = test;
 
+
+
+function createFavList() {
+	for (var i = favGistList.length - 1; i < favGistList.length; i++) {
+		var tableData = document.createElement("tr");
+		var tableUrl = document.createElement("a");
+		var breaker = document.createElement("br");
+		var fbutton = document.createElement("button");
+		fbutton.innerHTML = "+";
+		fbutton.id = favGistList[i].id;
+
+		fbutton.onclick = function addToFavs() {
+			// must add code
+		};
+
+		var description = favGistList[i].description;
+		tableUrl.href = favGistList[i].url;
+		if (description === "") {
+			description = "No description provided";
+		}
+		var tableDataText = document.createTextNode(description);
+		tableUrl.appendChild(tableDataText);
+		favList.appendChild(fbutton);
+		favList.appendChild(tableUrl);
+		favList.appendChild(breaker);
+	}
+}
 
 
 function createList() {
@@ -14,25 +42,17 @@ function createList() {
 		var fbutton = document.createElement("button");
 		fbutton.innerHTML = "+";
 		fbutton.id = originalGistList[i].id;
-		/*
-		fubtton.onclick = function addToFavs() {
+
+		fbutton.onclick = function addToFavs() {
 			var favListID = this.id;
 			for (var ii = 0; ii < originalGistList.length; ii++) {
 				if (originalGistList[ii].id == favListID) {
-					var description = originalGistList[i].description;
-					tableUrl.href = originalGistList[i].url;
-					if (description === "") {
-						description = "No description provided";
-					}
-					var tableDataText = document.createTextNode(description);
-					tableUrl.appendChild(tableDataText);
-					gistList.appendChild(this);
-					gistList.appendChild(tableUrl);
-					gistList.appendChild(breaker);
+					favGistList[favGistList.length] = originalGistList[ii];
+					createFavList();
 				}
 			}
 		};
-		*/
+
 		var description = originalGistList[i].description;
 		tableUrl.href = originalGistList[i].url;
 		if (description === "") {
