@@ -1,7 +1,36 @@
- {
-	background-color: azure;
+div {
 	float: left;
-	margin-top: 20px;
-	width: 75%;
 }
 
+.gists {
+	background-color: azure;
+	width: 45%;
+}
+
+.search {
+	margin-left: 2%;
+	float: none;
+}
+
+.title {
+	font-size: 2em;
+	margin-top: 60px;
+	width: 45%;
+}
+
+#ltitle {
+	margin-left: 2%;
+}
+
+#rtitle {
+	margin-left: 6%;
+}
+
+
+#nonfavs {
+	margin-left: 2%;
+}
+
+#favs {
+	margin-left: 6%;
+}

@@ -2,16 +2,43 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-			<title>GIST List</title>
-				<link rel="stylesheet" href="style2.css">
+		<title>GIST List</title>
+		<link rel="stylesheet" href="style2.css">
 	</head>
 	<body>
-		<div id=gist>
-		hello
-		</div>
-		<div id=favs>
-		hello
-		</div>
+		
+		<section>
+			<div class="search">
+				<label>Search Gists</label>
+				<input type="text" name="search-text">
+				<input type="radio" name="javascript-radio">Javascript
+				<input type="radio" name="sql-radio">SQL
+				<input type="radio" name="json-radio">JSON
+				<input type="radio" name="python-radio">Python
+				<input type="button" value="Search" onclick="startSearch()">	
+			</div>
+		</section>
+		
+		<section>
+			<div class="title" id="ltitle">Gists</div>
+			<div class="title" id="rtitle">Favourite Gists</div>
+		</section>
+		
+		<section>
+			<div class="gists" id="nonfavs">
+				<table id="gist-list">
+				</table>
+			</div>
+		</section>
+		
+		<section>
+			<div class="gists" id=favs>hello
+				
+			</div>
+		</section>
+		
+		
 	</body>
-
+	<script src="jscript.js"></script>
 </html>
+<script src="jscript.js"></script>
