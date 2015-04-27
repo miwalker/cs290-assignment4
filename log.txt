@@ -1,3 +1,9 @@
+Start: Sun, 26 Apr 2015 22:01:30 -0500 
+End: Sun, 26 Apr 2015 22:27:54 -0500 
+Tasks: finishing touches - fav will auto populate non-fav list
+Start: Sun, 26 Apr 2015 21:54:44 -0500 
+End: Sun, 26 Apr 2015 22:01:29 -0500 
+Tasks: added log
 Start: Sun, 26 Apr 2015 21:08:15 -0500 
 End: Sun, 26 Apr 2015 21:54:43 -0500 
 Tasks: all assignment requirements met - finish
