@@ -4,9 +4,15 @@ var gistList = document.getElementById("gist-list");
 var favList = document.getElementById("fav-list");
 var tracker = 0;
 
-//elDiv.innerHTML = test;
 
-
+function checkFavs(idCheck) {
+	for (var i = 0; i < favGistList.length; i++) {
+		if (idCheck == favGistList[i].id) {
+			return 0;
+		}
+	}
+	return 1;
+}
 
 function createFavList(n) {
 	for (var i = n; i < favGistList.length; i++) {
@@ -47,7 +53,7 @@ function createFavList(n) {
 
 function createList(searchString) {
 	for (var i = 0; i < originalGistList.length; i++) {
-		if (searchString === "" || originalGistList[i].description.indexOf(searchString) != -1) {
+		if ((searchString === "") && (checkFavs(originalGistList[i].id) == 1)) {
 			var tableData = document.createElement("tr");
 			var tableUrl = document.createElement("a");
 			var fbutton = document.createElement("button");
