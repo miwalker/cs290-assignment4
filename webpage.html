@@ -5,12 +5,13 @@
 		<title>GIST List</title>
 		<link rel="stylesheet" href="style2.css">
 	</head>
-	<body>
+	<body onload="start();">
 		
 		<section>
 			<div class="search">
 				<label>Search Gists</label>
 				<input type="text" name="search-text">
+				<input type="radio" name="all-radio">All
 				<input type="radio" name="javascript-radio">Javascript
 				<input type="radio" name="sql-radio">SQL
 				<input type="radio" name="json-radio">JSON
@@ -27,7 +28,9 @@
 		<section>
 			<div class="gists" id="nonfavs">
 				<table id="gist-list">
+					<tr><br></tr>
 				</table>
+				<br>
 			</div>
 		</section>
 		
@@ -35,11 +38,10 @@
 			<div class="gists" id=favs>
 				<table id="fav-list">
 				</table>
+				<br>
 			</div>
 		</section>
-		
 		
 	</body>
 	<script src="jscript.js"></script>
 </html>
-<script src="jscript.js"></script>
