@@ -15,11 +15,18 @@ function createFavList(n) {
 		var fbutton = document.createElement("button");
 		fbutton.innerHTML = "-";
 		fbutton.id = favGistList[i].id;
+		tableData.id = favGistList[i].id + "1";
 
 		fbutton.onclick = function addToFavs() {
 			var favListID = this.id;
-			var elRemove = document.getElementById(favListID + "1");
-			favList.removeChild(elRemove);
+			for (var ii = 0; ii < favGistList.length; ii++) {
+				if (favGistList[ii].id == favListID) {
+					var elRemove = document.getElementById(favListID + 1);
+					favList.removeChild(elRemove);
+					favGistList.splice(ii, 1);
+					localStorage.setItem("favz", JSON.stringify(favGistList));
+				}
+			}
 		};
 		
 		var description = favGistList[i].description;
@@ -31,44 +38,47 @@ function createFavList(n) {
 		tableUrl.appendChild(tableDataText);
 		tableData.appendChild(fbutton);
 		tableData.appendChild(tableUrl);
-		tableData.id = fbutton.id + "1";
 		favList.appendChild(tableData);
+		localStorage.clear();
+		localStorage.setItem("favz", JSON.stringify(favGistList));
 	}
 }
 
 
-function createList() {
+function createList(searchString) {
 	for (var i = 0; i < originalGistList.length; i++) {
-		var tableData = document.createElement("tr");
-		var tableUrl = document.createElement("a");
-		var fbutton = document.createElement("button");
-		fbutton.innerHTML = "+";
-		fbutton.id = originalGistList[i].id;
+		if (searchString === "" || originalGistList[i].description.indexOf(searchString) != -1) {
+			var tableData = document.createElement("tr");
+			var tableUrl = document.createElement("a");
+			var fbutton = document.createElement("button");
+			fbutton.innerHTML = "+";
+			fbutton.id = originalGistList[i].id;
 
-		fbutton.onclick = function addToFavs() {
-			var favListID = this.id;
-			for (var ii = 0; ii < originalGistList.length; ii++) {
-				if (originalGistList[ii].id == favListID) {
-					favGistList[favGistList.length] = originalGistList[ii];
-					createFavList(favGistList.length - 1);
-					var elRemove = document.getElementById(favListID + "1");
-					gistList.removeChild(elRemove);
-					originalGistList.splice(ii, 1);
+			fbutton.onclick = function addToFavs() {
+				var favListID = this.id;
+				for (var ii = 0; ii < originalGistList.length; ii++) {
+					if (originalGistList[ii].id == favListID) {
+						favGistList[favGistList.length] = originalGistList[ii];
+						createFavList(favGistList.length - 1);
+						var elRemove = document.getElementById(favListID + "1");
+						gistList.removeChild(elRemove);
+						originalGistList.splice(ii, 1);
+					}
 				}
-			}
-		};
+			};
 
-		var description = originalGistList[i].description;
-		tableUrl.href = originalGistList[i].url;
-		if (description === "") {
-			description = "No description provided";
+			var description = originalGistList[i].description;
+			tableUrl.href = originalGistList[i].url;
+			if (description === "") {
+				description = "No description provided";
+			}
+			var tableDataText = document.createTextNode(description);
+			tableUrl.appendChild(tableDataText);
+			tableData.appendChild(fbutton);
+			tableData.appendChild(tableUrl);
+			tableData.id = fbutton.id + "1";
+			gistList.appendChild(tableData);
 		}
-		var tableDataText = document.createTextNode(description);
-		tableUrl.appendChild(tableDataText);
-		tableData.appendChild(fbutton);
-		tableData.appendChild(tableUrl);
-		tableData.id = fbutton.id + "1";
-		gistList.appendChild(tableData);
 	}
 }
 
@@ -106,11 +116,15 @@ function startSearch() {
 	var jsonRadio = document.getElementsByName('json-radio')[0].checked;
 	var pythonRadio = document.getElementsByName('python-radio')[0].checked;
 	searchGists(searchText, jsRadio, sqlRadio, jsonRadio, pythonRadio);
-	createList();
 	if (tracker == 0) {
+		if (localStorage.getItem('favz') != null) {
+			favGistList = JSON.parse(localStorage.getItem('favz'));
+			//localStorage.clear();
+		}
 		createFavList(0);
 		tracker = 1;
 	}
+	createList(searchText);
 }
 
 
